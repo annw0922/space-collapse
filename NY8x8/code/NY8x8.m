@@ -13,7 +13,7 @@ function r = NY8x8()
              expMarkovAsym_3g, ...   % 实验豆矩阵
              expLoop3_3g] = ...      % 实验的圈
       StateTrans();
-      save('..\o\exp8x8')
+      save('..\out\exp8x8')
 %% 理论结果
 % 参数
         wlogit=0.0166; Lambda=1/wlogit;  repeat= 1000;   % dou(repeat)不对
@@ -30,7 +30,7 @@ function r = NY8x8()
              [theg3_p16_acc16_1000, ...         % 32列=16溶度+15累积
               theg3_p16_acc16_lastround] =  ... %第1000轮结果 
         plotTheoCrossover(Lambda,repeat,wlogit); 
-        save('..\o\the8x8') 
+        save('../output/the8x8') 
 end
 
 
@@ -57,11 +57,11 @@ absSum=[]; Macc=zeros(64); Aacc=zeros(64); Macc_mn2ij = zeros(64);Macc_ij2mn = z
             Macc_mn2ij=Macc_mn2ij+Mmn2ij;
             Aacc=Aacc+Aij2mn;
             absSum=[absSum; t sum(sum(abs(Macc_ij2mn))) sum(sum(abs(Aij2mn))) sum(sum(abs(Aacc)))];
-%             markov_t_2csv = strcat('.\o\Aij2mn',num2str(2000+t),'.csv')
+%             markov_t_2csv = strcat('./output/Aij2mn',num2str(2000+t),'.csv')
 %             csvwrite(markov_t_2csv, Aij2mn);
-%             Aacc_t_2csv = strcat('.\o\Flux\Aacc',num2str(2000+t),'.csv');
+%             Aacc_t_2csv = strcat('./output/Flux\Aacc',num2str(2000+t),'.csv');
 %             csvwrite(Aacc_t_2csv, Aacc);
-%             Aacc_t_2csv = strcat('.\o\Flux\Macc',num2str(2000+t),'.csv');
+%             Aacc_t_2csv = strcat('./output/Flux\Macc',num2str(2000+t),'.csv');
 %             csvwrite(Aacc_t_2csv, Macc);
         end
 
@@ -115,7 +115,7 @@ Para = [2 1; 3 2; 4 2];
     end
     
                             set(gcf,'papersize',[20 3],'paperposition',[3,3,20,3]);hold on; 
-                            saveas(gcf,strcat('..\o\Theo600-',num2str(Lambda),'.png'))
+                            saveas(gcf,strcat('../output/Theo600-',num2str(Lambda),'.png'))
 end 
 
 function anan=logit_dyn_090B20190408(A,Lambda,repeat,wlogit,pq2x8)  
@@ -446,7 +446,7 @@ end
 % C:\Users\Think\Downloads\【批量下载】8x8(82).rar等3个文件\Get8x8Data.m
 function [n8x8list,stateList,RPara] = Get8x8Data(Para)
 % n8x8list = load('C:\Users\Think\Downloads\n8x8.csv');
-n8x8list = load('..\i\n8x8.csv');
+n8x8list = load('../input/n8x8.csv');
 n8x8list(:,1) = n8x8list(:,1) * 100 - 8000000;
 
 %构造 State_t0,State_tp1(+1,后一轮),State_tm1(-1,前一轮)
@@ -606,7 +606,7 @@ Accu_P2 = zeros(1000,8); %Accu(1,R(1,6))=1;
 end
                             set(gcf,'papersize',[17 3],'paperposition',[3,3,20,3]);hold on; 
 %                             saveas(gcf,'D:\MATLAB\R2016a\bin\html\wzj20180131\Expe600a.png')
-                            saveas(gcf,'..\o\Expe600.png')
+                            saveas(gcf,'../output/Expe600.png')
 end
 % \end{verbatim} 
  
