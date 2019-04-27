@@ -1,0 +1,48 @@
+,,,这是实验分析结果变量说明
+实验分析结果,,,
+exp8x8list,,,
+,ExperimentID,实验编码,头几位是实验日期，小数点后面为场次
+,SubjectID,被试编码,T00x
+,PeriodID,轮次,时间 1-1000轮
+,GroupID,组号,
+,MyNo,组内几号,1-Ann 2-Bob
+,MyStrategy,我的策略,‘1-8
+,OpStratrgy,对手策略,‘1-9
+,MyScore,我的得分,
+,GameParameter,实验参数,"6,8,10 -(m, n) = （2,1），（3,2），（4，2）"
+,state_t,t时刻社会态,
+,state_tp1,t+1时刻社会态,
+,,,
+expAccEvolution_3g,32列,p1-p8,8列
+,,q1-q8,8列
+,,pacc1-8,8列
+,,qacc2-8,8列
+,3000行,Game1,1-1000行
+,,Game2,1001-2000行
+,,Game3,2001-3000行
+,,,
+expDisEvolution_3g,GameID,行数 = Game（1-3） * 策略数（1-8）,
+,p（1-1000）,,
+,q（1-1000）,,
+,p（1-500）,,
+,q（1-500）,,
+,p（501-1000）,,
+,q（501-1000）,,
+,p（800-1000）,,
+,q（800-1000）,,
+,,,
+expLoop3_3g,GameID,实验参数,"6,8,10 -(m, n) = （2,1），（3,2），（4，2）"
+,State_1,态1标志,第一位是p的ID，第二位是q的ID
+,State_2,态2标志,第一位是p的ID，第二位是q的ID
+,State_3,态3标志,第一位是p的ID，第二位是q的ID
+,Tran_1_2,态1-2转移净数量,
+,Tran_2_3,态2-3转移净数量,
+,Tran_3_1,态3-1转移净数量,
+,Sum(Tran),和,
+,Min(Tran),最小值,
+,,,
+expMarkovAsym_3g,"反对称的 Markov64x64,1:3",,
+,,,
+expMarkovOrig_3g,"都矩阵原值 Markov64x64,1:3",,
+,,,
+stateList,64个态与pq态的对应,,
