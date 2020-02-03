@@ -81,7 +81,26 @@ def main(_):
 +  game = pyspiel.load_game_as_turn_based("von_poker_6",)
 ```
 
+此时直接跑会报错`RuntimeError: UtilitySum unimplemented.`
+我的做法是自行定义bimatrix game的utilitysum,即在`/open_spiel/matrix_game.h`里的
+```
+class MatrixGame : public NormalFormGame {
+ public:
+```
+ 
+ 里增加
+ ```
+ double UtilitySum() const override { return 0; }
+ ```
+ (然后要重新make)
 
+ 在`cfr`的情况下,可以通过调用
+ 
+ ```py
+ print("policy_av:",cfr_solver.average_policy().action_probability_array)
+ print("policy_cr:",cfr_solver.current_policy().action_probability_array)
+ ```
+来输出当前的
 
     
 
