@@ -1,6 +1,3 @@
-# space-collapse
-SEDS
-
 # 目录
 
 * [研究进展](#研究进展)
@@ -11,6 +8,11 @@ SEDS
 
 ### 关于open_spiel的使用
 open_spiel的github:[https://github.com/deepmind/open_spiel](https://github.com/deepmind/open_spiel)
+
+#### 我的实验环境:
+* Ubuntu 18.04
+* anaconda3,python3.7
+* 2张TITAN Xp,两张TITAN V.Driver Version 396.54
 
 #### 安装方式:
 安装按照:[https://arxiv.org/pdf/1908.09453.pdf](https://arxiv.org/pdf/1908.09453.pdf)第6页2.1节
@@ -61,14 +63,21 @@ std::shared_ptr<const Game> Factory(const GameParameters& params) {
 }
 
 REGISTER_SPIEL_GAME(kGameType, Factory);
-}  // namespace von_poler game6
-```
+}  // namespace von_poler game6```
 其中GameType可选设置以及解释见[`open_spiel/spiel.h`](https://github.com/deepmind/open_spiel/blob/master/open_spiel/spiel.h)
 每次更改完game以后需要重新在`build/`路径下`make -j$(nproc)`
 
 #### 运行算法(bimatrix game):
 * [cfr](#####cfr)
 ##### cfr
+
+Counterfactual Regret Minimization科普介绍：
+* [Counterfactual Regret Minimization – the core of Poker AI beating professional players](https://int8.io/counterfactual-regret-minimization-for-poker-ai/)
+* [An Introduction to Counterfactual Regret Minimization](http://modelai.gettysburg.edu/2013/cfr/cfr.pdf)(附带java code)
+* 整理笔记了一哈：[https://github.com/annw0922/space-collapse/blob/master/cfr_.md](https://github.com/annw0922/space-collapse/blob/master/cfr_.md)
+
+另外open spiel提供了[cfr_br](https://poker.cs.ualberta.ca/publications/AAAI12-cfrbr.pdf)算法和[deep_cfr](https://arxiv.org/abs/1811.00164)算法,但在我们的较小的bimatrix game情况用不上.
+
 在`open_spiel/python/examples/cfr_example.py`下进行.
 cfr算法要求sequential game,直接将kuhn_poker改成对应bimatrixgame会报错如下:
 >Spiel Fatal Error: CFR requires sequential games. If you're trying to run it on a simultaneous (or normal-form) game, please first transform it using turn_based_simultaneous_game.
@@ -102,5 +111,19 @@ class MatrixGame : public NormalFormGame {
  ```
 来输出当前的
 
-    
+```py
+def write_csv(filename,data):
+    with open(filename,"a") as f:
+        f_csv = csv.writer(f)
+        f_csv.writerow(data)
+        
+write_csv(dir_+game_+"_"+algo_name+"_av.csv",cfr_solver.average_policy().action_probability_array[0])
+write_csv(dir_+game_+"_"+algo_name+"_av.csv",cfr_solver.average_policy().action_probability_array[1])
+write_csv(dir_+game_+"_"+algo_name+"_cr.csv",cfr_solver.current_policy().action_probability_array[0])
+write_csv(dir_+game_+"_"+algo_name+"_cr.csv",cfr_solver.current_policy().action_probability_array[1])
+```
+来写文档。
 
+实验结果:
+博弈收敛速率(通过exploitation)
+![image](https://github.com/annw0922/space-collapse/blob/master/image/exploitation6810.jpg)
