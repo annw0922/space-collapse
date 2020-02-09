@@ -126,4 +126,10 @@ write_csv(dir_+game_+"_"+algo_name+"_cr.csv",cfr_solver.current_policy().action_
 
 实验结果:
 博弈收敛速率(通过exploitation)
-<div align=center><img width="400" height="300" alt="收敛速率" src="https://github.com/annw0922/space-collapse/blob/master/image/exploitation6810.jpg"/></div>
+<div align=center><img width="500" height="500" alt="收敛速率" src="https://github.com/annw0922/space-collapse/blob/master/NY8x8/output/open_spiel/cfr_noise/exploitability_noise.jpg"/></div>
+
+<div align=center><img width="500" height="400" alt="g6" src="https://github.com/annw0922/space-collapse/blob/master/NY8x8/output/open_spiel/cfr_noise/cfr_noise_6.jpg"/></div>
+
+<div align=center><img width="500" height="400" alt="g8" src="https://github.com/annw0922/space-collapse/blob/master/NY8x8/output/open_spiel/cfr_noise/cfr_noise_8.jpg"/></div>
+
+<div align=center><img width="500" height="400" alt="g10" src="https://github.com/annw0922/space-collapse/blob/master/NY8x8/output/open_spiel/cfr_noise/cfr_noise_10.jpg"/></div>
